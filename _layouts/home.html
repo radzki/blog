@@ -36,7 +36,7 @@ layout: default
         <h3 class="post-title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h3>
-        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+        <p class="post-excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 160 }}</p>
         <a href="{{ post.url | relative_url }}" class="read-more">
           <span class="prompt">></span> cat article.md
         </a>

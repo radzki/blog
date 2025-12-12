@@ -655,6 +655,33 @@ body {
   text-decoration-style: dashed;
 }
 
+.page-content h2 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px dashed var(--border-accent);
+  color: var(--accent-primary);
+}
+
+.page-content h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.page-content ul,
+.page-content ol {
+  margin-left: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .page-content ul,
+  .page-content ol {
+    margin-left: var(--space-lg);
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Footer
    ═══════════════════════════════════════════════════════════════════════════ */

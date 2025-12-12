@@ -2,7 +2,7 @@
 layout: post
 title: "Reverse Engineering 101: Teaching Ghidra at Work"
 description: "A beginner-friendly introduction to reverse engineering I prepared for my company's offsite learning lab"
-date: 2025-01-01
+date: 2025-06-08
 tags: [reverse-engineering, ghidra, teaching, workshop]
 ---
 

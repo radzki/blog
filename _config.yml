@@ -1,7 +1,7 @@
 # Site settings
 title: "RE://notes"
 description: "Notes from (reverse) engineering"
-author: ""
+author: "Gabriel Radzki"
 baseurl: "" # subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 

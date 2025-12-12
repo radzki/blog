@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<div class="home">
+  <section class="hero">
+    <pre class="hero-ascii">
+ ██████╗ ███████╗        ██╗ ██╗███╗   ██╗ ██████╗ ████████╗███████╗███████╗
+ ██╔══██╗██╔════╝██╗    ██╔╝██╔╝████╗  ██║██╔═══██╗╚══██╔══╝██╔════╝██╔════╝
+ ██████╔╝█████╗  ╚═╝   ██╔╝██╔╝ ██╔██╗ ██║██║   ██║   ██║   █████╗  ███████╗
+ ██╔══██╗██╔══╝  ██╗  ██╔╝██╔╝  ██║╚██╗██║██║   ██║   ██║   ██╔══╝  ╚════██║
+ ██║  ██║███████╗╚═╝ ██╔╝██╔╝   ██║ ╚████║╚██████╔╝   ██║   ███████╗███████║
+ ╚═╝  ╚═╝╚══════╝    ╚═╝ ╚═╝    ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝
+    </pre>
+    <p class="hero-tagline">{{ site.description }}</p>
+  </section>
+  
+  <section class="posts-section">
+    <h2 class="section-title">
+      <span class="prompt">$</span> ls -la ./posts
+    </h2>
+    
+    <div class="posts-list">
+      {% for post in site.posts %}
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          {% if post.tags.size > 0 %}
+          <span class="post-tags">
+            {% for tag in post.tags limit:3 %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </span>
+          {% endif %}
+        </div>
+        <h3 class="post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+        <a href="{{ post.url | relative_url }}" class="read-more">
+          <span class="prompt">></span> cat article.md
+        </a>
+      </article>
+      {% endfor %}
+      
+      {% if site.posts.size == 0 %}
+      <div class="no-posts">
+        <p><span class="prompt">$</span> ls -la ./posts</p>
+        <p class="output">total 0</p>
+        <p class="comment"># No posts yet. Check back soon.</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+

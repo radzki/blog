@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <div class="post-meta-top">
+      <span class="post-date">
+        <span class="prompt">$</span> date --iso-8601
+        <span class="output">{{ page.date | date: "%Y-%m-%d" }}</span>
+      </span>
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}
+    <p class="post-description">{{ page.description }}</p>
+    {% endif %}
+    {% if page.tags.size > 0 %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+  
+  <div class="post-content">
+    {{ content }}
+  </div>
+  
+  <footer class="post-footer">
+    <div class="post-nav">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="nav-prev">
+        <span class="nav-label"><span class="prompt">$</span> cd ../prev</span>
+        <span class="nav-title">{{ page.previous.title }}</span>
+      </a>
+      {% endif %}
+      {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="nav-next">
+        <span class="nav-label"><span class="prompt">$</span> cd ../next</span>
+        <span class="nav-title">{{ page.next.title }}</span>
+      </a>
+      {% endif %}
+    </div>
+    <a href="{{ '/' | relative_url }}" class="back-home">
+      <span class="prompt">$</span> cd ~/
+    </a>
+  </footer>
+</article>
+

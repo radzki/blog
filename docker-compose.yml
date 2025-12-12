@@ -1,0 +1,14 @@
+services:
+  jekyll:
+    build: .
+    container_name: re-notes-blog
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle
+    command: bundle exec jekyll serve --host 0.0.0.0 --force_polling --drafts --watch
+
+volumes:
+  bundle_cache:
+

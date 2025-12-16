@@ -586,7 +586,7 @@ The cameras that were once dependent on Chinese cloud servers now run entirely o
 
 ## Files and Resources
 
-You can find useful files, specially for setting up the stream locally and also the camera firmware dump, here: https://github.com/radzki/CloseliStreamServer
+You can find useful files, specially for setting up the stream locally and also the camera firmware dump, here: [https://github.com/radzki/CloseliStreamServer](https://github.com/radzki/CloseliStreamServer)
 
 
 ## Future work

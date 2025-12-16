@@ -42,6 +42,18 @@ Key components:
 - **Wireshark/tcpdump**: Packet capture
 - **mitmproxy/Burp Suite**: HTTPS interception
 
+### Network Port Scanning
+
+Before diving into packet capture, I attempted direct port scanning on the camera using nmap to identify any open services:
+
+```bash
+nmap -p- -sV <camera_ip>
+```
+
+**Result**: No ports were found open on the camera. This was consistent with the cloud-dependent architecture—the camera doesn't expose any local services and instead relies entirely on outbound connections to cloud servers for all communication.
+
+This finding reinforced that the camera was designed as a cloud-only device with no local streaming capabilities, which became a key motivation for the reverse engineering effort.
+
 ### Discovering the Architecture
 
 Initial packet captures revealed the camera uses a **three-channel architecture**:

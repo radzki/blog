@@ -7,7 +7,7 @@ permalink: /about/
 
 ## $ whoami
 
-Hey, I'm **Gabriel Radzki** — a software engineer and reverse engineering enthusiast based in Porto Alegre, Brazil.
+Hey, I'm **Gabriel Radzki** — a computer engineer working as a software engineer and reverse engineering (lots of engineering!!) enthusiast based in Porto Alegre, Brazil.
 
 By day, I build things at [Mindbody](https://www.mindbody.io/). By night (and weekends), I take things apart — firmware, binaries, IoT devices, whatever catches my curiosity. Sometimes I even put them back together.
 

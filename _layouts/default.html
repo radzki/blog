@@ -19,7 +19,47 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
   <!-- Turnstile -->
-  <script async src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad" async defer></script>
+  
+  <!-- Verification overlay styles -->
+  <style>
+    .verification-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .verification-overlay.hidden {
+      display: none;
+    }
+    .verification-content {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      color: #00ff41;
+    }
+    .verification-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .verification-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .site-content {
+      visibility: hidden;
+    }
+    .site-content.verified {
+      visibility: visible;
+    }
+  </style>
   
   <!-- SEO -->
   {% seo %}
@@ -28,11 +68,6 @@
   {% feed_meta %}
   
   <!-- Google Analytics -->
-  <script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async
-  defer
-></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7Y3ZFV82E"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -42,11 +77,21 @@
   </script>
 </head>
 <body>
-  <div class="cf-turnstile" data-sitekey="0x4AAAAAACW6DzmqbhG0HlPS"></div>
-  <div class="scanlines"></div>
-  <div class="noise"></div>
-  
-  <header class="site-header">
+  <!-- Verification Overlay -->
+  <div id="verification-overlay" class="verification-overlay">
+    <div class="verification-content">
+      <div class="verification-title">[SECURITY_CHECK]</div>
+      <div class="verification-subtitle">Verifying you're human...</div>
+      <div id="turnstile-widget"></div>
+    </div>
+  </div>
+
+  <!-- Main Site Content (hidden until verified) -->
+  <div id="site-content" class="site-content">
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    
+    <header class="site-header">
     <div class="container">
       <a href="{{ '/' | relative_url }}" class="logo">
         <span class="logo-bracket">[</span>
@@ -80,6 +125,44 @@
       </p>
     </div>
   </footer>
+  </div><!-- end site-content -->
+
+  <script>
+    // Check if already verified this session
+    function isVerified() {
+      return sessionStorage.getItem('turnstile_verified') === 'true';
+    }
+
+    // Show content and hide overlay
+    function showContent() {
+      document.getElementById('verification-overlay').classList.add('hidden');
+      document.getElementById('site-content').classList.add('verified');
+      sessionStorage.setItem('turnstile_verified', 'true');
+    }
+
+    // Turnstile callback on successful verification
+    function onTurnstileSuccess(token) {
+      showContent();
+    }
+
+    // Called when Turnstile script loads
+    function onTurnstileLoad() {
+      if (isVerified()) {
+        showContent();
+      } else {
+        turnstile.render('#turnstile-widget', {
+          sitekey: '0x4AAAAAACW6DzmqbhG0HlPS',
+          callback: onTurnstileSuccess,
+          theme: 'dark'
+        });
+      }
+    }
+
+    // If already verified, show content immediately
+    if (isVerified()) {
+      showContent();
+    }
+  </script>
 </body>
 </html>
 

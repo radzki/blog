@@ -12,10 +12,14 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   
   <!-- Styles -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- Turnstile -->
+  <script async src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   
   <!-- SEO -->
   {% seo %}
@@ -24,6 +28,11 @@
   {% feed_meta %}
   
   <!-- Google Analytics -->
+  <script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7Y3ZFV82E"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,6 +42,7 @@
   </script>
 </head>
 <body>
+  <div class="cf-turnstile" data-sitekey="0x4AAAAAACW6DzmqbhG0HlPS"></div>
   <div class="scanlines"></div>
   <div class="noise"></div>
   
